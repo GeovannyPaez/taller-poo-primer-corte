@@ -30,7 +30,7 @@ public class Resport {
     public int countClientsByEmail(String email, String[] emails) {
         int count = 0;
         for (String e : emails) {
-            if (e != null && e.equals(email)) {
+            if (e != null && e.contains(email)) {
                 count++;
             }
         }
