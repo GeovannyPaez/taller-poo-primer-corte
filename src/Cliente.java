@@ -1,8 +1,9 @@
 public class Cliente {
-    String nome;
-    long CC;
-    String email;
-    int age;
-    String address;
-    String phone;
+    // vetores paralelos
+    public String[] nomes = new String[200];
+    public int[] cedulas = new int[200];
+    public int[] cellPhones = new int[200];
+    public int[] ages = new int[200];
+    public String[] cities = new String[200];
+
 }
