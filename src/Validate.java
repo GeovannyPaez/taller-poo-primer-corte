@@ -1,4 +1,6 @@
 public class Validate {
+    public static String[] emailsValids = { "@gmail.com", "@hotmail.com", "@outlook.com" };
+
     public static boolean isNumber(String value) {
         try {
             Integer.parseInt(value);
@@ -9,10 +11,12 @@ public class Validate {
     }
 
     public static boolean isEmail(String value) {
-        boolean isGmail = value.contains("@gmail.com");
-        boolean isHotmail = value.contains("@hotmail.com");
-        boolean isOutlook = value.contains("@outlook.com");
-        return isGmail || isHotmail || isOutlook;
+        for (String email : emailsValids) {
+            if (value.contains(email)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isAge(int value) {

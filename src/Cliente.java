@@ -10,6 +10,7 @@ public class Cliente {
     private String[] emails = new String[200];
 
     private Scanner scanner = new Scanner(System.in);
+    private Resport resport = new Resport();
 
     public boolean createClient(String name, int cedula, long cellPhone, int age, String city, String email) {
         for (int i = 0; i < this.names.length; i++) {
@@ -31,6 +32,7 @@ public class Cliente {
         int cedula = this.getCedulaToCreateClient();
         long cellPhone = this.getValueLongClient("cell phone");
         int age = this.getAgeConsole();
+        scanner.nextLine();
         String city = this.getStringValueClient("city");
         String email = this.getEmailConsole();
         if (this.createClient(name, cedula, cellPhone, age, city, email)) {
@@ -47,10 +49,12 @@ public class Cliente {
             return;
         }
         String name = this.getStringValueClient("name");
-        int cedula = this.getCedulaConsole();
+        int cedula = this.getCedulaToCreateClient();
         int cellPhone = this.getValueIntClient("cell phone");
         int age = this.getAgeConsole();
         String city = this.getStringValueClient("city");
+        this.updateClient(index, name, cedula, cellPhone, age, city, email);
+        System.out.println("Client updated successfully");
     }
 
     public int getValueIntClient(String message) {
@@ -134,12 +138,17 @@ public class Cliente {
         int age = this.getAgeConsole();
         String city = this.getStringValueClient("city");
         String email = this.getEmailConsole();
+        this.updateClient(index, name, cedula, cellPhone, age, city, email);
+        return true;
+    }
+
+    public void updateClient(int index, String name, int cedula, long cellPhone, int age, String city, String email) {
         this.names[index] = name;
+        this.cedulas[index] = cedula;
         this.phoneNumber[index] = cellPhone;
         this.ages[index] = age;
         this.cities[index] = city;
         this.emails[index] = email;
-        return true;
     }
 
     public int getCedulaConsole() {
@@ -167,9 +176,38 @@ public class Cliente {
         return false;
     }
 
-    public void printListClients() {
+    public void listAllClients() {
         for (int i = 0; i < this.names.length; i++) {
             if (this.names[i] != null) {
+                System.out.println("Client " + (i + 1));
+                this.printClient(i);
+            }
+        }
+    }
+
+    public void printClient(int index) {
+        System.out.println("Nome: " + this.names[index]);
+        System.out.println("Cedula: " + this.cedulas[index]);
+        System.out.println("Phone Number: " + this.phoneNumber[index]);
+        System.out.println("Age: " + this.ages[index]);
+        System.out.println("City: " + this.cities[index]);
+        System.out.println("Email: " + this.emails[index]);
+    }
+
+    public void listByRangeAge() {
+        int minAge = this.getValueIntClient("min age");
+        int maxAge = this.getValueIntClient("max age");
+        this.printListClientsByRangeAge(minAge, maxAge);
+    }
+
+    public void listByCity() {
+        String city = this.getStringValueClient("city");
+        this.printListClientsByCity(city);
+    }
+
+    public void printListClientsByCity(String city) {
+        for (int i = 0; i < this.names.length; i++) {
+            if (this.names[i] != null && this.cities[i].equals(city)) {
                 System.out.println("Nome: " + this.names[i]);
                 System.out.println("Cedula: " + this.cedulas[i]);
                 System.out.println("Phone Number: " + this.phoneNumber[i]);
@@ -200,5 +238,22 @@ public class Cliente {
             }
         }
         return true;
+    }
+
+    public void printResport() {
+        int countClientsRegistered = this.resport.countClientsRegistered(this.cedulas);
+        int averageAge = this.resport.averageAge(this.ages);
+        int countClientsByCityCucuta = this.resport.countClientsByCity("Cucuta", this.cities);
+        int countClientsByCityPamplona = this.resport.countClientsByCity("Pamplona", this.cities);
+        int countClientsByEmailOutlook = this.resport.countClientsByEmail("@outlook.com", this.emails);
+        int countClientsByEmailGmail = this.resport.countClientsByEmail("@gmail.com", this.emails);
+
+        System.out.println("Count clients registered: " + countClientsRegistered);
+        System.out.println("Average age: " + averageAge);
+        System.out.println("Count clients by city Cucuta: " + countClientsByCityCucuta);
+        System.out.println("Count clients by city Pamplona: " + countClientsByCityPamplona);
+        System.out.println("Count clients by email @outlook.com: " + countClientsByEmailOutlook);
+        System.out.println("Count clients by email @gmail.com: " + countClientsByEmailGmail);
+
     }
 }

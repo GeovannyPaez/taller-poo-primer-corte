@@ -18,7 +18,7 @@ public class Menu {
         System.out.println("2. Remove client");
         System.out.println("3. Update client");
         System.out.println("4. Search clients");
-        System.out.println("5. Cliente Report");
+        System.out.println("5. Client Report");
         System.out.println("6. Exit");
         this.option = scanner.nextInt();
 
@@ -34,7 +34,7 @@ public class Menu {
                 if (isDeleted) {
                     System.out.println("Client deleted successfully");
                 } else {
-                    System.out.println("Client not deleted");
+                    System.out.println("Not found client");
                 }
                 break;
             case 3:
@@ -47,6 +47,7 @@ public class Menu {
                 break;
             case 5:
                 System.out.println("Cliente Report");
+                this.cliente.printResport();
                 break;
             case 6:
                 System.out.println("Exit");
@@ -66,12 +67,15 @@ public class Menu {
         switch (option) {
             case 1:
                 System.out.println("List all clients");
+                this.cliente.listAllClients();
                 break;
             case 2:
                 System.out.println("List by range age");
+                this.cliente.listByRangeAge();
                 break;
             case 3:
                 System.out.println("List by city");
+                this.cliente.listByCity();
                 break;
             default:
                 System.out.println("Invalid option");
