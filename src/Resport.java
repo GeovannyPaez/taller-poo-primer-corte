@@ -1,7 +1,7 @@
 public class Resport {
-    public int countClientsRegistered(int[] cedulas) {
+    public long countClientsRegistered(long[] cedulas) {
         int count = 0;
-        for (int cedula : cedulas) {
+        for (long cedula : cedulas) {
             if (cedula != 0) {
                 count++;
             }
@@ -9,18 +9,23 @@ public class Resport {
         return count;
     }
 
-    public int averageAge(int[] ages) {
+    public float averageAge(int[] ages) {
         int sum = 0;
+        int increment = 0;
         for (int age : ages) {
+            System.out.println("age: " + age);
+          if(age != 0) {
             sum += age;
+            increment++;
+          };
         }
-        return sum / ages.length;
+        return (float) sum / increment;
     }
 
     public int countClientsByCity(String city, String[] cities) {
         int count = 0;
         for (String c : cities) {
-            if (c != null && c.equals(city)) {
+            if (c != null && c.equals(city.toUpperCase())) {
                 count++;
             }
         }

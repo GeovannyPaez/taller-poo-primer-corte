@@ -29,7 +29,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("Remove client");
-                int cedula = this.cliente.getCedulaConsole();
+                long cedula = this.cliente.getCedulaConsole();
                 boolean isDeleted = this.cliente.removeClient(cedula);
                 if (isDeleted) {
                     System.out.println("Client deleted successfully");
@@ -61,8 +61,11 @@ public class Menu {
     public void manageListPeople() {
         int option = 0;
         System.out.println("1. List all clients");
-        System.out.println("2. List by range age");
-        System.out.println("3. List by city");
+        System.out.println("2. List by cedula");
+        System.out.println("3. List by email");
+        System.out.println("4. List by phone number");
+        System.out.println("5. List by range age");
+        System.out.println("6. List by city");
         option = scanner.nextInt();
         switch (option) {
             case 1:
@@ -70,10 +73,22 @@ public class Menu {
                 this.cliente.listAllClients();
                 break;
             case 2:
+                System.out.println("List by Cedula");
+                this.cliente.listClientByCedula();
+                break;
+            case 3:
+                System.out.println("List by Email");
+                this.cliente.listClientByMail();
+                break;
+            case 4:
+                System.out.println("List by Phone Number");
+                this.cliente.listClientByPhoneNumber();
+                break;
+            case 5:
                 System.out.println("List by range age");
                 this.cliente.listByRangeAge();
                 break;
-            case 3:
+            case 6:
                 System.out.println("List by city");
                 this.cliente.listByCity();
                 break;
@@ -92,7 +107,7 @@ public class Menu {
         switch (option) {
             case 1:
                 System.out.println("Update by cedula");
-                int cedula = this.cliente.getCedulaConsole();
+                long cedula = this.cliente.getCedulaConsole();
                 this.cliente.updateClientByCedula(cedula);
                 break;
             case 2:

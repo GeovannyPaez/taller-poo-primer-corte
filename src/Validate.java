@@ -23,12 +23,12 @@ public class Validate {
         return value >= 18;
     }
 
-    public static boolean isValidCedula(int cedula) {
-        return cedula >= 100000 && cedula <= 999999999;
+    public static boolean isValidCedula(long cedula) {
+        return cedula >= 100000 && cedula <= 9999999999L;
     }
 
-    public static boolean isUniqueCedula(int[] cedulas, int cedula) {
-        for (int cedu : cedulas) {
+    public static boolean isUniqueCedula(long[] cedulas, long cedula) {
+        for (long cedu : cedulas) {
             if (cedu == cedula) {
                 return false;
             }
