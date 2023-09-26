@@ -14,12 +14,12 @@ public class Menu {
     }
 
     public void printMenu() {
-        System.out.println("1. Add client");
+        System.out.println("\n1. Add client");
         System.out.println("2. Remove client");
         System.out.println("3. Update client");
         System.out.println("4. Search clients");
         System.out.println("5. Client Report");
-        System.out.println("6. Exit");
+        System.out.println("6. Exit\n");
         this.option = scanner.nextInt();
 
         switch (this.option) {
